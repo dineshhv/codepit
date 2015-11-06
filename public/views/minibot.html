@@ -1,0 +1,144 @@
+<section role="main" class="scroll-container">
+<div class="row">
+  <div class="large-3 medium-4 columns">
+    <div class="sidebar">
+      <!-- <div class="infoArea" > 
+          <div class="profileCircle large-3 columns" style="background-image:">
+          </div>
+          <div class="ProfileInfo large-9 columns">
+            <p style="text-transform:capitalize;">{{itsMe.profileName}}</p>
+          </div>
+      </div>
+      <div class="divider"></div>
+      <div>posts: {{itsMe.postCount}}</div> -->
+<!--       <div>Language: {{itsMe.preferenceLanguage}}</div> -->
+<profile-panel></profile-panel>
+    </div>
+  </div>
+  <div class="large-9 medium-8 columns" >
+    <div class="large-12 medium-10 columns" >
+      <div class="row" >
+            <div class="small-5 columns">
+              <input type="text" placeholder="Filter" ng-model="courseFilter">
+            </div>
+            <div class="small-5 columns">
+              <select ng-model="sortExpression" style="display:none">
+                <option value="level">Level</option>
+                <option value="topic">Topic</option>
+                <option value="category">Category</option>
+                <option value="rating">Rating</option>
+              </select>
+            </div>
+             <div class="small-2 columns">
+                <a ng-click="botsCtrl.changeOrder('list')"><i class="fa fa-list"></i></a>&nbsp;
+                <a ng-click="botsCtrl.changeOrder('block')"><i class="fa fa-th-large"></i></a> 
+            </div>
+      </div>
+    </div>
+
+    <div class="large-12 medium-10 columns" >
+    <!-- {{changetype}} -->
+    <div infinite-scroll='endless.nextPage(itsMe.userID)' infinite-scroll-disabled='endless.busy' infinite-scroll-distance='1'>
+        <!-- <div ng-repeat='item in endless.items'>
+          <span class='score'>{{item.score}}</span>
+          <span class='title'>
+            <a ng-href='{{item.url}}' target='_blank'>{{item.title}}</a>
+          </span>
+          <small>by {{item.author}} -
+            <a ng-href='http://reddit.com{{item.permalink}}' target='_blank'>{{item.num_comments}} comments</a>
+          </small>
+          <div style='clear: both;'></div>
+        </div> myPosts
+ -->
+        <div  ng-class="{block:blocktype,list:listtype}" class="panel radius" ng-repeat="items in endless.items | filter: courseFilter | orderBy: '-createdOn'" ng-class-odd="'odd'" ng-class-even="'even'">
+
+          <div class="panel-layer">
+            <div class="date-panel large-1 medium-1 columns">
+              <div class="panel-createdOn text-center radius">
+                  <div class="panel-date radius-top">
+                    {{items.createdOn | parseDate:'day'}}
+                  </div>
+                  <div class="panel-month">
+                    {{items.createdOn | parseDate:'month':'short'}}
+                  </div>
+                  <div class="panel-year" style="display:none">
+                    {{items.createdOn | parseDate:'year'}}
+                  </div>
+              </div>
+            </div>
+            <div class="text-panel large-11 medium-11 columns">
+              <div ng-click="showPost()" class="panel-title radius truncate" title="{{items.postTitle}}">{{items.postTitle}}</div>
+               <div class="panel-tags radius truncate" title="{{items.tags}}">{{items.tags | joinBy:', '}}</div>
+            
+              <div class="panel-content text-small block-ellipsis" ng-bind-html="items.shortDescp"></div>
+              <div class="panel-showmore"><a href=""> show more ...</a></div>
+            </div>
+          </div>     
+        </div>
+        <div ng-show='reddit.busy'>Loading data...</div>
+      </div>
+    </div>
+    <!-- <div class="large-12 medium-10 columns" >
+     <pagination boundary-links="true" current-page='currentPage' total-items='totalItems'></pagination>
+    </div> -->
+     <div class="large-12 medium-6 columns " >
+        <div class="large-9 medium-6 createArea">
+          <div class="large-12 medium-6 columns" >
+          <h3>
+          New Post
+          </h3>
+          </div>
+        </div>
+        <form name="postform"  ng-submit="postform.$valid && botsCtrl.addPost(post)" novalidate>
+          <!-- {{botsCtrl.newpost.postTitle}}
+          {{botsCtrl.newpost.shortDescp}}
+          {{botsCtrl.newpost.postContent}}
+          {{botsCtrl.newpost.tags}} -->
+          <div class="large-9 medium-6 createArea">
+              <div class="large-12 medium-6 columns" >
+                   <input type="text"  placeholder="Post Title" ng-model="botsCtrl.newpost.postTitle" required/>
+              </div>
+              <div class="large-12 medium-6 columns" >
+                   <input type="text" placeholder="Url" ng-model="botsCtrl.newpost.postUrl" required/>
+              </div>
+              <div class="large-12 medium-6 columns" >
+                   <input type="text" placeholder="Post Short Desc" ng-model="botsCtrl.newpost.shortDescp"/>
+              </div>
+              <div class="large-12 medium-6 columns" >
+                 <text-angular ng-model="botsCtrl.newpost.postContent"></text-angular>
+              </div>
+              
+              <div class="large-12 medium-6 columns" >
+                 <input type="text" placeholder="Tags" ng-model="botsCtrl.newpost.tags" ng-list=", "/>
+              </div>
+              <div class="large-12 medium-6 columns" >
+                  <button class="button tiny custom">post</button>
+              </div>
+            </div>
+          </div>
+        </form>
+    </div>
+  </div>
+
+	
+		<!-- <p>{{loadapp}}</p> -->
+<!-- 	{{stations}} -->
+
+<!-- <div >
+      <video-bg playlist="videos" player-callback="callback(player)"></video-bg>
+      <p style="padding: 200px 0;">Testing transclude!</p>
+      <button type="button" ng-click="changeVideo()">Change Video</button>
+      <button type="button" ng-click="pauseVideo()" ng-show="pauseVideo">Pause Video</button>
+      <button type="button" ng-click="playVideo()" ng-show="playVideo">Play Video</button>
+  </div> -->
+
+</div>
+
+  <div class="createBot"  ng-click='toggleModal()'>
+  <img src="images/Plus-ico.png" width="30" style="margin-top: 10px; margin-left: 10px;"/>
+      <!-- <div class="" style="background-image: url('images/add.png'); width:40px; height:40px; margin-top: 5px; margin-left: 5px;"></div> -->
+  </div>
+   <modal-dialog show='modalShown' postings='msg' dash='message' width='80%' height='85%'>
+      <!-- <p>Modal Content Goes here<p>  -->
+   </modal-dialog>
+</section>

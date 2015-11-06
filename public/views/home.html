@@ -1,0 +1,81 @@
+<section role="main" class="scroll-container">
+<div class="row" style="min-height: 330px;">
+
+
+    <!-- <p>{{loadapp}}</p> -->
+<!--  {{stations}} -->
+
+<!-- <div >
+      <video-bg playlist="videos" player-callback="callback(player)"></video-bg>
+      <p style="padding: 200px 0;">Testing transclude!</p>
+      <button type="button" ng-click="changeVideo()">Change Video</button>
+      <button type="button" ng-click="pauseVideo()" ng-show="pauseVideo">Pause Video</button>
+      <button type="button" ng-click="playVideo()" ng-show="playVideo">Play Video</button>
+  </div> -->
+<div class="row">
+  <div class="large-3 large-centered columns" style="text-align:center; margin-top: 10%;" >
+    <h1>Coderobo</h1>
+   
+  </div>
+  <div class="large-8 large-centered columns" style="text-align:center;"> <p>A referece keeper! For storing all your issues and its solutions for later use... </p></div>
+  <div class="large-8 large-centered columns" style="margin-top:15%; position: absolute;left: 20%;top: 20%;">
+      <div class="row">
+        <div class="large-12 columns">
+          <input name="search" type="text"  key-enter="search()" ng-model="searchtext"  placeholder="Whats your query?"  style="background-color: transparent;"/>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="large-4 columns" style="display:none;">
+    <h1>Login</h1>
+    <form name="loginform"  ng-submit="loginform.$valid && loginCtrl.userLogin(user)" novalidate>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Username
+              <input type="text" placeholder="" ng-model="loginCtrl.user.username" required/>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Password
+              <input type="password" placeholder="" ng-model="loginCtrl.user.password" required/>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <!-- <div class="button tiny expand">login</div> -->
+            <button class="button tiny expand custom">login</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            Not a member? <a href="#newbot">Sign up now</a>
+          </div>
+        </div>
+    </form>
+  </div>
+
+</div>
+</div>
+<div class="row result" ng-class="{hide: hide}" style="background:#fff; min-height:150px;  border-top-right-radius: 2px; border-top-left-radius: 2px;">
+  <div class="large-12 medium-10 columns" style="padding:10px 20px;">
+    <div class="large-12 medium-12 columns" ng-hide="searchpost.length" style="background:#fff;">
+      <span style="font-size:11px;">no related posts</span>
+   </div>
+    <div class="row" ng-repeat='item in searchpost'>
+        <div class='title large-12 medium-12 columns' ng-click="showPost()" >
+            {{item.postTitle}}
+        </div>
+        <div class="url large-12 medium-12 columns">
+          <a ng-href='{{item.postUrl}}' target='_blank'>{{item.postUrl}}</a>
+        </div>
+        <div class='desc large-12 medium-12 columns'>
+            <p>{{item.shortDescp}}</p>
+        </div>
+    </div>
+  </div>
+</div>
+</section>

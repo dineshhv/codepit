@@ -1,0 +1,349 @@
+body{
+  padding: 0;
+  margin:0;
+}
+
+p, h1, h2, h3, h4, h5, a, div{
+
+  letter-spacing: .4px;
+  font-weight: 200;
+  word-spacing: 1px;
+}
+p, h1, h2, h3, h4, h5,{
+    color : #234344;
+}
+
+.home{
+  background-image: url('/images/download.png');
+  margin-top: -12px;
+}
+
+.hide{
+  display:none;
+}
+.show{
+  display: block;
+}
+.row{
+  max-width: 90%;
+  margin-top: 1%;
+}
+
+.top-bar{
+  background: #1ec6cc;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button){
+  background:rgb(230, 85, 35);
+}
+
+.top-bar-section  a:hover{
+  background: rgb(236, 157, 130) !important;
+}
+
+.button{
+  background:#1ec6cc;
+}
+
+
+.button.custom:hover, .button.custom:focus {
+  background: #099ea3;
+}
+.infoArea{
+    width:100%;
+    display: inline-block;
+}
+.radius-top{
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel{
+ 
+  margin-left: 0;
+  padding: .2rem .9rem;
+  min-width: 380px;
+  overflow-y: auto;
+}
+
+.panel.list{
+  width: 100%;
+  margin-left: 0;
+  /*padding: 0.20rem;*/
+  border:none;
+  height: 75px;
+  background:#fff;
+
+  /*border-bottom: 1px solid #eee;*/
+}
+.panel.list .panel-title{
+  /*line-height: 12px;*/
+  padding: 0px 2px;
+
+}
+.panel.list .panel-title:hover{
+  cursor: pointer;
+}
+.panel.list .text-panel{
+  padding-left: 0px;
+}
+.date-panel{
+  padding: 0px;
+}
+.panel.block{
+  width: 49%;
+  float: left;
+  height: 150px;
+  background:#fff;
+  border:none;
+  border-bottom: 1px solid #eee;
+  /*border:1px solid #1ec6cc;*/
+}
+.panel.block .date-panel{
+  width: 12%;
+}
+.panel.block .text-panel{
+  width: 87%;
+  padding-left: .2rem;
+}
+
+.panel.block .panel-title
+{
+  color: #12a0a5;
+  background: #fff;
+}
+.panel.block.odd{
+  border-right: 1px solid #eee;
+}
+.panel.list .block-ellipsis{
+    height: 18px !important;
+}
+.panel.list .panel-content,.panel.list .panel-showmore{
+  display: none;
+}
+.panel.list .panel-title
+{
+  color: #12a0a5;
+  background: #fff;
+}
+.block{
+  border:1px solid #1ec6cc;
+}
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.block-ellipsis{
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  height: 45px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 16;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+}
+.panel-createdOn{
+    width: 45px;
+    height: 50px;
+    background-color: rgb(230, 85, 35);  
+    float: left;
+}
+.panel-layer{
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+.panel-date{
+  font-size: 20px;
+  font-weight: 400;
+  background: #eee;
+}
+.panel-month{
+  font-size: 14px;
+  color: #fff !important;
+}
+.panel-year{
+  font-size: 11px
+}
+.panel-layer .radius{
+  border-radius: 3px;
+}
+.panel-title
+{
+
+    padding: 1px 3px;
+    background: #1ec6cc;
+    /*margin-top: 13px;*/
+}
+.panel-tags{
+
+    padding: 1px 3px;
+    color: rgb(230, 85, 35);
+    font-size: 12px;
+    word-spacing: 2px;
+    /*margin-top: 5px;*/
+}
+.text-small{
+  font-size: 11px;
+  word-spacing: 2px;
+}
+.panel-showmore{
+  font-size: 12px;
+     width: 80px;
+    float: right;
+    margin-top:8px;
+}
+.panel-content{
+  margin-top: 4px;
+  line-height: 16px;
+}
+.createBot{
+    background-color: rgb(230, 85, 35);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 3%;
+    bottom: 4%;
+
+}
+.profileCircle {
+  display: block;
+  /*width: 75px;*/
+  width:30%;
+  height: 75px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+/*  -webkit-border-radius: 99em;
+  -moz-border-radius: 99em;
+  border-radius: 99em;*/
+  border: 1px solid #eee;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);  
+  float: left;
+}
+
+.ProfileInfo{
+  float: right;
+  width: 70%;
+    height: 100%;
+}
+
+.editor-container{
+      border: 1px solid #666;
+    min-height: 250px;
+    overflow-y: auto;
+}
+.ql-snow.ql-toolbar{
+  background: #1ec6cc;
+  padding: 2px 3px !important;
+}
+.ql-picker-label{
+  background-color: #1ec6cc !important;
+}
+.ql-snow.ql-toolbar .ql-picker.ql-font .ql-picker-label, .ql-snow.ql-toolbar .ql-picker.ql-size .ql-picker-label
+{
+  background-color: #1ec6cc;
+}
+.btn-group{
+  float: left;
+}
+
+.btn-toolbar{
+  width: 100%;
+  height: 25px;
+  background-color:#1ec6cc;
+}
+.btn-group button{
+  margin:0rem !important;
+  padding: .2rem .21rem;
+  background-color:#1ec6cc;
+  font-size: 13px;
+}
+.btn-group:last-child {
+      height: 100%;
+}
+.ta-scroll-window > .ta-bind{
+  min-height:150px !important;
+}
+.ta-editor{
+      border: 1px solid #ddd;
+      clear:both;
+      min-height: 150px !important;
+}
+.create{
+  margin:10px 0px 20px;
+}
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea{
+  margin: 0 0 .7rem 0;
+  padding: .2rem;
+  height: 2rem;
+}
+.ta-editor{
+  margin: 0 0 .7rem 0;
+}
+#toolbarWC{
+    min-width: 30px;
+    margin-top: -22px;
+    margin-left: 120px;
+    background-color: #1ec6cc;
+    padding: 3px 10px 0px;
+    color: #fff;
+    font-size: 12px;
+    display: none !important;
+}
+#toolbarCC{
+   display: none !important;  
+}
+.loginpanel{
+  width: 300px;
+    height: 200px;
+    background-color: #fff;
+    border-left: 1px solid rgb(230, 85, 35);
+    border-right: 1px solid rgb(230, 85, 35);
+    border-bottom: 1px solid rgb(230, 85, 35);
+    position: absolute;
+    right: 0px;
+    padding-top: 5px;
+    z-index: 10;
+    top: 45px;
+}
+.registerpanel{
+    width: 300px;
+    height: 300px;
+    background-color: #fff;
+    border-left: 1px solid rgb(230, 85, 35);
+    border-right: 1px solid rgb(230, 85, 35);
+    border-bottom: 1px solid rgb(230, 85, 35);
+    position: absolute;
+    right: 0px;
+    padding-top: 5px;
+    z-index: 10;
+    top: 45px;
+}
+.ta-scroll-window > .ta-bind
+{
+    max-height: 400px;
+    overflow-y: auto;
+}
+.result .desc p{
+  font-size: 12px;
+}
+footer{
+  padding: 10px;
+}
+footer p{
+  color: #fff;
+  font-size: 12px;
+}

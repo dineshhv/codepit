@@ -1,0 +1,41 @@
+<div class='ng-modal' ng-show='show'>
+	<div class='ng-modal-overlay' ng-click='hideModal()'></div>
+	<div class='ng-modal-dialog' ng-style='dialogStyle'>
+		<div class='ng-modal-close' ng-click='hideModal()'>X</div>
+		<div class='ng-modal-dialog-content'>
+			<!-- Test one
+			{{postings}} -->
+			<form>
+			<div class="row collapse">
+				<div class="row ">
+					<div class="large-12 columns">
+			            <!-- <div class="button tiny expand">login</div> -->
+			            <button class="button tiny custom">post</button>
+			         </div>
+		        </div>
+			</div>
+			<div class="row collapse">
+				<div class="row ">
+					<div class="large-6 medium-4 columns">
+						<label>Title
+					        <input type="text"  />
+					    </label>
+					</div>
+					<div class="large-12 medium-4 columns">
+						<label>Short Description
+					        <input type="text" placeholder="" />
+					    </label>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="large-6 medium-4 columns">
+						<text-angular ng-model="htmlVariable"></text-angular>
+					</div>	
+					
+				</div>
+			</div>
+			</form>
+			<!-- <ng-quill-editor ng-model="message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image code quote" editor-required="true" required="" error-class="input-error"></ng-quill-editor> -->
+		</div>
+	</div>
+</div>

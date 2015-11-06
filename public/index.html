@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="codeApp">
+
+<head>
+<title>Coderobo</title>
+<link rel="icon" 
+      type="image/png" 
+      href="images/favicon.png">
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="bower_components/foundation/css/foundation.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/model.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/ngProgress/ngProgress.css">
+  <link rel="stylesheet" href="bower_components/ng-notify/dist/ng-notify.min.css">
+
+  <!-- SPELLS -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>  
+  <script src="bower_components/foundation/js/foundation.js"></script>  
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/ngProgress/build/ngProgress.min.js"></script>
+  <script src="bower_components/ng-notify/dist/ng-notify.min.js"></script>
+  <script src="bower_components/angular-ui-foundation-pagination/pagination.js"></script>
+  <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+
+
+  <link rel='stylesheet' href='bower_components/textAngular/dist/textAngular.css'>
+  <script src='bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+  <script src='bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+  <script src='bower_components/textAngular/dist/textAngular.min.js'></script>
+ 
+  <!--<script src="js/angular-video-bg.min.js"></script>-->
+  <script src="javascripts/script.js"></script>
+  <script src="javascripts/main-controller.js"></script>
+  <script src="javascripts/contact-controller.js"></script>
+  <script src="javascripts/about-controller.js"></script>
+  <script src="javascripts/bot-controller.js"></script>
+  <script src="javascripts/botview-controller.js"></script>
+  <script src="javascripts/newbot-controller.js"></script>
+<!-- <script src="javascripts/login-controller.js"></script> --> 
+  <script src="filters/datefilter.js"></script>
+  <script src="filters/tagjoiner.js"></script>
+  <script src="factory/codepit-factory.js"></script>
+  <script src="javascripts/directive.js"></script>
+</head>
+
+<!-- define angular controller -->
+<body ng-controller="MainCtrl"> <!--ng-controller="mainController"  ng-controller="loginCtrl as loginController"-->
+
+<nav class="top-bar" data-topbar role="navigation" data-options="is_hover:false" >
+    <div class="container">
+      <div class="title-area">
+          <div class="name" ng-class="{hide: homescreen}">
+            <h1 ><a href="#/">codeRobo</a></h1>
+          </div>
+      </div>
+      <section class="top-bar-section" ng-class="{hide: dashscreen}">
+        <ul class="right" ng-show="panelshow"   >
+          <li><a href="#/newbot"><i class="fa fa-user"></i> Register</a></li>
+          <li><a ng-click="showLogin()"><i class="fa fa-sign-in" ></i> login</a></li>
+          
+          <!-- 
+          <li><a href="#about"><i class="fa fa-shield"></i> about</a></li>
+          <li><a href="#contact"><i class="fa fa-comment"></i> contact</a></li> -->
+        </ul>
+        <div ng-show="loginShow" class="loginpanel" >
+            <div class="row">
+              <div class="large-12 columns">
+                <!-- <h6>Login</h6> -->
+                <form name="loginform"  ng-submit="loginform.$valid && userLogin(user)" novalidate>
+                    <div class="row">
+                      <div class="large-12 columns">
+                        <label>Username
+                          <input type="text" placeholder="" ng-model="user.username" required/>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="large-12 columns">
+                        <label>Password
+                          <input type="password" placeholder="" ng-model="user.password" required/>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="large-12 columns">
+                        <!-- <div class="button tiny expand">login</div> -->
+                        <button class="button tiny expand custom">login</button>
+                      </div>
+                    </div>
+                    <div class="row" style="display:none;">
+                      <div class="large-12 columns">
+                        Not a member? <a href="#newbot">Sign up now</a>
+                      </div>
+                    </div>
+                </form>
+              </div>
+
+            </div>
+        </div>
+        <div ng-show="registerShow" class="registerpanel">
+            <div class="row">
+              <div class="large-12 columns">
+                <!-- <h6>Login</h6> -->
+                <form name="loginform"  ng-submit="loginform.$valid && userLogin(user)" novalidate>
+                    <div class="row">
+                      <div class="large-12 columns">
+                        <label>Username
+                          <input type="text" placeholder="" ng-model="user.username" required/>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="large-12 columns">
+                        <label>Password
+                          <input type="password" placeholder="" ng-model="user.password" required/>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="large-12 columns">
+                        <!-- <div class="button tiny expand">login</div> -->
+                        <button class="button tiny expand custom">login</button>
+                      </div>
+                    </div>
+                    <div class="row" style="display:none;">
+                      <div class="large-12 columns">
+                        Not a member? <a href="#newbot">Sign up now</a>
+                      </div>
+                    </div>
+                </form>
+              </div>
+
+            </div>
+        </div>
+      </section>
+    </div>
+    
+  </nav>
+ 
+  <div id="main"  ng-class="{home: homescreen}">
+  
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+    <div ng-view style="min-height: 450px;"></div>
+    
+  </div>
+  
+  <footer class="text-center" style="background: #261b1b; height: 150px;">
+   
+  
+    <p style="padding: 0px;margin: 0px;">@copyright <a href="Vinmein.com"> Vinmein.com</a></p>
+  </footer>
+  
+</body>
+
+</html>
+
