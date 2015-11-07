@@ -34,6 +34,7 @@
     "angular-paginate-anything": "~4.1.2",
     "ng-simplePagination": "~1.0.3",
     "angular-ui-foundation-pagination": "~0.1.4",
-    "ngInfiniteScroll": "~1.2.1"
+    "ngInfiniteScroll": "~1.2.1",
+    "ngprogress": "~1.1.2"
   }
 }
