@@ -17,6 +17,7 @@
 		'ngProgress',
 		'textAngular',
 		'ngNotify',
+		'ui.router',
 		'ui.foundation.pagination',
 		'infinite-scroll'
 		]); //,'angularVideoBg'
