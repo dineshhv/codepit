@@ -1,46 +1,36 @@
 <div class="jumbotron">
-	<h1>Login</h1>
-	
-	<p>{{ message }}</p>
-		<!-- <p>{{loadapp}}</p> -->
-<!-- 	{{stations}} -->
 
-<!-- <div >
-      <video-bg playlist="videos" player-callback="callback(player)"></video-bg>
-      <p style="padding: 200px 0;">Testing transclude!</p>
-      <button type="button" ng-click="changeVideo()">Change Video</button>
-      <button type="button" ng-click="pauseVideo()" ng-show="pauseVideo">Pause Video</button>
-      <button type="button" ng-click="playVideo()" ng-show="playVideo">Play Video</button>
-  </div> -->
 <div class="row">
-  <div class="large-4 columns">...</div>
+
+  <div class="large-4 columns">&nbsp;</div>
   <div class="large-4 columns">
-    <form>
+     <h1>Login</h1>
+      <form name="registerform"  ng-submit="registerform.$valid && addUser(user)" novalidate>
         <div class="row">
           <div class="large-12 columns">
             <label>Username
-              <input type="text" placeholder="" />
+              <input type="text" ng-model="user.username" placeholder="" />
             </label>
           </div>
         </div>
         <div class="row">
           <div class="large-12 columns">
             <label>Password
-              <input type="text" placeholder="" />
+              <input type="text" ng-model="user.password" placeholder="" />
             </label>
           </div>
         </div>
          <div class="row">
           <div class="large-12 columns">
             <label>Password
-              <input type="text" placeholder="" />
+              <input type="text" ng-model="user.password" placeholder="" />
             </label>
           </div>
         </div>
          <div class="row">
           <div class="large-12 columns">
             <label>Email
-              <input type="email" placeholder="" />
+              <input type="email" ng-model="user.email" placeholder="" />
             </label>
           </div>
         </div>
@@ -53,6 +43,6 @@
     </form>
   </div>
 
-  <div class="large-4 columns">...</div>
+  <div class="large-4 columns">&nbsp;</div>
 </div>
 </div>

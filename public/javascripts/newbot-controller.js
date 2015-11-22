@@ -5,18 +5,26 @@
 		var mrtData=this
 		// create a message to display in our view
 		$scope.message = 'Login';
-		$http.get('http://54.169.160.2:3000/travel/all').success(function(data){
-			mrtData.stations=data;
-			$scope.stations=data;
-		});
-		 $scope.videoId = 'iNJdPyoqt8U';
-
-          
-		 $scope.videos = [{
-              videoId: 'iNJdPyoqt8U',
-              start: 30,
-              end: 40
-          }];
+		$scope.user={}
+		
+		$scope.addUser=function(user){
+			
+			$http.post('/users/adduser', {username:$scope.user.username, password:$scope.user.password, email:$scope.user.email}).
+			then(function(response) {
+			    // this callback will be called asynchronously
+			    // when the response is available
+			    if(response.data.errorCode==0)
+			    {
+			    	$cookieStore.put('userSession', response.data.UHash);
+			    	$cookies.put('userSession', response.data.UHash);
+			    	$location.path('/bots')
+			    }
+			}, function(response) {
+			    // called asynchronously if an error occurs
+			    // or server returns response with an error status.
+			});
+			this.user={};
+		};
 	}]);       
 
 })();

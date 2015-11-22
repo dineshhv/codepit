@@ -9,7 +9,7 @@ var cons = require('consolidate');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/codepit');
+var db = monk('localhost:27018,localhost:27017,localhost:27019/codepit');
 
 
 var routes = require('./routes/index');
