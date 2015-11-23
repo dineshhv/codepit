@@ -9,7 +9,8 @@
 		'$cookieStore',
 		'$rootScope',
 		'DataService',
-		function($http,$scope,$location,$cookies,$cookieStore,$rootScope,DataService) {
+		'$stateParams',
+		function($http,$scope,$location,$cookies,$cookieStore,$rootScope,DataService,$stateParams) {
 		var login=this
 		// create a message to display in our view
 		$scope.message = 'Login';
@@ -18,10 +19,11 @@
 		$scope.searchtext=''
 		$scope.hide = true;
 		//http://localhost:3001/appInfo
-
-		$rootScope.$$childHead.homescreen = true;
-		$rootScope.$$childHead.dashscreen = false;
-		console.log($rootScope)
+		if($stateParams.type == 'page')
+		{
+			$rootScope.$$childHead.homescreen = true;
+			$rootScope.$$childHead.dashscreen = false;
+		}
 		this.userLogin=function(user){
 			
 			$http.post('/users/login', {username:this.user.username,password:this.user.password}).

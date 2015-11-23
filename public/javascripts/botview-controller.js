@@ -11,13 +11,15 @@
     	'DataService', 
     	'$location',
     	'$rootScope',
-    	function($http, $scope, $routeParams, DataService, $location,$rootScope){
+    	'$state',
+		'$stateParams',
+    	function($http, $scope, $routeParams, DataService, $location,$rootScope,$state,$stateParams){
 
-    	$scope.postID = $routeParams.postID
+    	$scope.postID = $stateParams.postID
 
     	$rootScope.$$childHead.homescreen = false;
 		$rootScope.$$childHead.dashscreen = true;
-		console.log()
+
     	DataService.getPostsbyID($scope.postID).then(function (response) {
     		if(response.data.errorCode==0)
 		    {
@@ -27,7 +29,6 @@
 		    		if(response.data.errorCode==0)
 				    {
 				    	$scope.relatedPost=response.data.response;
-				    	console.log($scope.viewPost)
 					}
 				});
 			}

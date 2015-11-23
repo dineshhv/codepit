@@ -1,11 +1,13 @@
+<div class="large-12 columns nopadding" ng-include="'views/templates/header-dash.html'"></div>
+<div class="large-12 columns nopadding main" id="main" ng-class="{home: homescreen}" >
 <section role="main" class="scroll-container">
 
 <div class="row">
-  <div class="large-9 medium-9 columns">
-  	<div class="row" style="margin-bottom:10px;">
-		<div class="large-10 medium-10 columns" ng-click="backPost()" ><i class="fa fa-arrow-circle-left"></i> back</div>
-		<div class="large-2 medium-2 columns" style="text-align: right;"><i class="fa fa-pencil"></i> edit</div>
-	</div>
+    <div class="large-9 medium-9 columns">
+    	<div class="row" style="margin-bottom:10px;">
+  		<div class="large-10 medium-10 columns" ng-click="backPost()" ><i class="fa fa-arrow-circle-left"></i> back</div>
+  		<div class="large-2 medium-2 columns" style="text-align: right;"><i class="fa fa-pencil"></i> edit</div>
+  	</div>
   	<div class="row">
 	  	<div class="large-11 medium-11 columns"><h2>{{ viewPost.postTitle}}</h2></div> 
   	</div>
@@ -38,3 +40,5 @@
   
  </div>
 </section>
+</div>
+<div class="large-12 columns nopadding" ng-include="'views/templates/footer.html'"></div>

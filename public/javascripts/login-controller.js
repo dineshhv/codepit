@@ -11,9 +11,10 @@
     	'DataService', 
     	'$location',
     	'$rootScope',
-    	function($http, $scope, $routeParams, DataService, $location){
+        '$stateParams',
+    	function($http, $scope, $routeParams, DataService, $location,$stateParams){
     	$scope.loginShow=false;
-
+                console.log($stateParams)
     }]);
 
 

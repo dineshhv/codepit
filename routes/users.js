@@ -11,16 +11,41 @@ router.use(function(req, res, next) {
   next();
 });
 
-/* GET users listing. */
+/**
+ * @api {get} /users/all
+ * @apiName all users
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiSampleRequest  http://localhost:3003/users/all
+ *
+ * @apiExample {curl} Example usage:
+ *     curl -i http://localhost:3003/users/all
+ *
+ * @apiSuccess {String} _id  _id of the User. 
+ * @apiSuccess {String} username  username of the User.
+ */
 router.get('/all', function(req, res) {
     var db = req.db;
     
     var collection = db.get('User');
-    collection.find({},'-password',function(e,docs){
+    collection.find({}, {fields : { salt:0, password:0} },function(e,docs){
     	res.send(docs);
     });
 
 });
+
+/**
+ * @api {get} /users/session Request User information
+ * @apiName GetSession
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiSampleRequest  http://localhost:3003/users/session
+ *
+ * @apiExample {curl} Example usage:
+ *     curl -i http://localhost:3003/users/session
+ *
+ * @apiSuccess {String} session session of the User.
+ */
 
 router.get('/session', function(req, res) {
     if(req.session.user)
@@ -31,10 +56,29 @@ router.get('/session', function(req, res) {
 });
 
 
+/**
+ * @api {get} /users/:id
+ * @apiName  user by id
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * 
+ * @apiParam {String} [id]  Optional Firstname of the User.
+ *
+ * @apiSampleRequest  http://localhost:3003/users/:id
+ *
+ * 
+ * @apiExample {curl} Example usage:
+ *     curl -i http://localhost:3003/users/:id
+ *
+ *
+ * @apiSuccess {String} _id  _id of the User. 
+ * @apiSuccess {String} username  username of the User.
+ */
+
 router.get('/:id', function(req, res) {
     var db = req.db;
     var collection = db.get('User');
-    collection.find({ _id: req.params.id },{"username":1,"password": 0},function(e,docs){
+    collection.find({ _id: req.params.id }, {fields : { salt:0, password:0} },function(e,docs){
     	// res.render('userlist', {
      //        "userlist" : docs
      //    });

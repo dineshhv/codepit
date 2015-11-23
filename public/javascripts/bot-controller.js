@@ -14,8 +14,10 @@
 		'ngProgressFactory',
 		'DataService',
 		'$rootScope',
-		'Endless',function($http,$scope,$location,$cookies,$cookieStore,$timeout,dateFormate,ngProgressFactory,DataService,$rootScope, Endless) {
+        '$stateParams',
+		'Endless',function($http,$scope,$location,$cookies,$cookieStore,$timeout,dateFormate,ngProgressFactory,DataService,$rootScope, $stateParams,Endless) {
 		var codeAppData=this
+		console.log($stateParams)
 		// create a message to display in our view
 		// console.log(dateFormate.dateConvert(1422200798441))
 		// $scope.progressbar = ngProgressFactory.createInstance();
@@ -102,7 +104,8 @@
 		 	$scope.itsMe.postCount++;
 
 		 	$scope.endless.addnewPost(this.newpost).success(function(response){
-		 		console.log(response);
+		 		if(response.errorCode == "0")
+		 			this.newpost._id = response.postID;
 
 		 	})
 		 	this.newpost={}

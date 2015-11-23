@@ -226,7 +226,7 @@ router.post('/addPost', function(req, res) {
 				            
 				        }
 				    });
-	           	var returnMsg={"errorCode":0,"msg":"Successfully Added"}
+	           	var returnMsg={"errorCode":0,"msg":"Successfully Added","postID":doc._id}
 	            res.send(returnMsg);
 	        }
 	    });

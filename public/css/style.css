@@ -12,12 +12,18 @@ p, h1, h2, h3, h4, h5, a, div{
 p, h1, h2, h3, h4, h5,{
     color : #234344;
 }
-
+.columns.nopadding {
+    padding-left: 0;
+    padding-right: 0;
+}
 .home{
   background-image: url('/images/download.png');
   margin-top: -12px;
 }
-
+#main{
+  min-height: 68.3%;
+  margin-top: 0px;
+}
 .hide{
   display:none;
 }

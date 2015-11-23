@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+.columns.nopadding {
+    padding-left: 0;
+    padding-right: 0;
+}
