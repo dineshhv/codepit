@@ -32,8 +32,8 @@
               </select>
             </div>
              <div class="small-2 columns">
-                <a ng-click="botsCtrl.changeOrder('list')"><i class="fa fa-list"></i></a>&nbsp;
-                <a ng-click="botsCtrl.changeOrder('block')"><i class="fa fa-th-large"></i></a> 
+                <a ng-click="changeOrder('list')"><i class="fa fa-list"></i></a>&nbsp;
+                <a ng-click="changeOrder('block')"><i class="fa fa-th-large"></i></a> 
             </div>
       </div>
     </div>
@@ -91,27 +91,27 @@
           </h3>
           </div>
         </div>
-        <form name="postform"  ng-submit="postform.$valid && botsCtrl.addPost(post)" novalidate>
+        <form name="postform"  ng-submit="postform.$valid && addPost(post)" novalidate>
           <!-- {{botsCtrl.newpost.postTitle}}
           {{botsCtrl.newpost.shortDescp}}
           {{botsCtrl.newpost.postContent}}
           {{botsCtrl.newpost.tags}} -->
           <div class="large-9 medium-6 createArea">
               <div class="large-12 medium-6 columns" >
-                   <input type="text"  placeholder="Post Title" ng-model="botsCtrl.newpost.postTitle" required/>
+                   <input type="text"  placeholder="Post Title" ng-model="newpost.postTitle" required/>
               </div>
               <div class="large-12 medium-6 columns" >
-                   <input type="text" placeholder="Url" ng-model="botsCtrl.newpost.postUrl" required/>
+                   <input type="text" placeholder="Url" ng-model="newpost.postUrl" required/>
               </div>
               <div class="large-12 medium-6 columns" >
-                   <input type="text" placeholder="Post Short Desc" ng-model="botsCtrl.newpost.shortDescp"/>
+                   <input type="text" placeholder="Post Short Desc" ng-model="newpost.shortDescp"/>
               </div>
               <div class="large-12 medium-6 columns" >
-                 <text-angular ng-model="botsCtrl.newpost.postContent"></text-angular>
+                 <text-angular ng-model="newpost.postContent"></text-angular>
               </div>
               
               <div class="large-12 medium-6 columns" >
-                 <input type="text" placeholder="Tags" ng-model="botsCtrl.newpost.tags" ng-list=", "/>
+                 <input type="text" placeholder="Tags" ng-model="newpost.tags" ng-list=", "/>
               </div>
               <div class="large-12 medium-6 columns" >
                   <button class="button tiny custom">post</button>

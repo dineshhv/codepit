@@ -60,6 +60,7 @@ app.use('/users/profile', posts);
 app.use('/users/login', users);
 app.use('/posts', posts);
 app.use('/posts/addPost', posts);
+app.use('/posts/addPost2', posts);
 app.use('/posts/all', posts);
 app.use('/posts/id', posts);
 app.use('/posts/view/alias', posts);

@@ -50,7 +50,7 @@
 	              	params : { type: 'blog' },
 	          })
 	          .state('newbot', {
-	              	url: "/bots",
+	              	url: "/newbot",
 	              	templateUrl: function(urlattr){
 	                	return '/views/newbot.html';
 	              	},

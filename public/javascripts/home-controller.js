@@ -14,8 +14,7 @@
 		var login=this
 		// create a message to display in our view
 		$scope.message = 'Login';
-		this.user={}
-		this.products=[];
+		$scope.user={};
 		$scope.searchtext=''
 		$scope.hide = true;
 		//http://localhost:3001/appInfo
@@ -24,9 +23,9 @@
 			$rootScope.$$childHead.homescreen = true;
 			$rootScope.$$childHead.dashscreen = false;
 		}
-		this.userLogin=function(user){
+		$scope.userLogin=function(user){
 			
-			$http.post('/users/login', {username:this.user.username,password:this.user.password}).
+			$http.post('/users/login', {username:$scope.user.username,password:$scope.user.password}).
 			then(function(response) {
 			    // this callback will be called asynchronously
 			    // when the response is available
@@ -40,7 +39,7 @@
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			});
-			this.user={};
+			$scope.user={};
 		};
 
 		$scope.search = function(){

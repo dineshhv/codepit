@@ -9,16 +9,17 @@ mongoosedb.once("open", function callback(){
 });
 
 var postschema = new Schema({
-	  _id: ObjectId,
+	  // _id: ObjectId,
 	  postTitle: { type: String, required: true},
 	  postContent: { type: String, required: true },
 	  shortDescp: { type: String, required: true },
 	  postUrl: String,
 	  tags: [String],
 	  userID: String,
-	  createdOn: Date
+	  alias: { type: String, required: true, unique: true },
+	  createdOn: Number
 	});
 
-var Post = mongoose.model("Model", postschema,"codePost");
+var Post = mongoose.model("model-post", postschema,"codePost");
 
 module.exports = Post;

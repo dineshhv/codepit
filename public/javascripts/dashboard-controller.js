@@ -45,7 +45,7 @@
 		}
 		
 		// ngNotify.set('Post Created Successfully');
-		this.changeOrder = function(type){
+		$scope.changeOrder = function(type){
 			if(type==='block')
 			{
 				$scope.blocktype = true;
@@ -68,47 +68,37 @@
 
 
 		});
-		// DataService.getPosts($scope.userHash).then(function (response) {
-		// 	$scope.progressbar.complete();
-		//     if(response.data.errorCode==0)
-		//     {
-		// 		$scope.myPosts=response.data.response.data;
-		// 		$scope.nextSet=response.data.response.after;
-		// 	}
-		// 	else
-		// 	{
-		// 		$location.path('/');
-		// 	}
-		// });
+		
 		
 		$scope.showPost = function(){
 			$rootScope.$$childHead.from = 'user'
 			$location.path('view/'+this.items.alias);
 		}
 
-		 $scope.endless = new Endless($scope);
+		$scope.endless = new Endless($scope);
 		
 
-		 $scope.modalShown = false;
-		 $scope.msg = 'dinesh';
-		 $scope.toggleModal = function() {
+		$scope.modalShown = false;
+		$scope.msg = 'dinesh';
+		
+		$scope.toggleModal = function() {
 		    $scope.modalShown = !$scope.modalShown;
-		 };
+		};
 		 
-		 this.newpost={}
-		 this.addPost = function (post){
-		 	this.newpost.createdOn=new Date().getTime()
-		 	this.newpost.userID=$scope.userHash;
+		$scope.newpost={}
+		$scope.addPost = function (post){
+		 	$scope.newpost.createdOn=new Date().getTime()
+		 	$scope.newpost.userID=$scope.userHash;
 
 		 	// $scope.myPosts.push(this.newpost);
 		 	$scope.itsMe.postCount++;
 
-		 	$scope.endless.addnewPost(this.newpost).success(function(response){
+		 	$scope.endless.addnewPost($scope.newpost).success(function(response){
 		 		if(response.errorCode == "0")
-		 			this.newpost._id = response.postID;
+		 			$scope.newpost._id = response.postID;
 
 		 	})
-		 	this.newpost={}
+		 	$scope.newpost={}
 		 	// 	DataService.addPost(this.newpost).then(function (response) {
 			// 	if(response.data.errorCode=='0')
 			// 	{

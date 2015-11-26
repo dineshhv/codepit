@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
 var session = require('express-session')
+var profile = require('../model/profile');
 
 router.use(function(req, res, next) {
   if(req.session.user)

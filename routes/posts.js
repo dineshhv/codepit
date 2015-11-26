@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt');
 var session = require('express-session')
 var ObjectID = require('mongodb').ObjectID
 var post = require('../model/post');
+var profile = require('../model/profile');
 
 router.use(function(req, res, next) {
   if(req.session.user)
@@ -210,12 +211,55 @@ router.get('/:id/before/:dt', function(req, res) {
 });
 
 router.post('/addPost', function(req, res) {
+    var payload=req.body;
+    delete payload.createdOn;
+    payload.createdOn=Date.now();
+    var regex = /[\. ,:––]+/gi;
+    payload.alias = payload.postTitle.toLowerCase().replace(regex, ' ').replace(/ +/g, '_');
+    if(req.user||payload.userID){
+        var newpost= post(payload);
+        newpost.save(function(err, doc) {
+            if (err) {
+                
+                msg="There was a problem adding the information to the database.";
+                var returnMsg={"errorCode":101,"msg":msg}
+                res.send(returnMsg);
+            }
+            else {
+
+                profile.findOneAndUpdate({ userID: doc.userID }, { $inc: { postCount: 1 }}, function(err, profile) {
+                    if (err){
+                        var returnMsg={"errorCode":0,"msg":"Post Successfully Added with count fail","postID":doc._id}
+                        res.send(returnMsg);
+                    }
+                    else{
+
+                        // we have the updated user returned to us
+                        var returnMsg={"errorCode":0,"msg":"Post Successfully Added","postID":doc._id}
+                        res.send(returnMsg);
+                    }
+
+                });
+                
+            }
+        });
+    }
+    else
+    {
+         var returnMsg={"errorCode":99,"msg":"Session Expired"}
+         res.send(returnMsg);
+    }
+});
+
+router.post('/addPost2', function(req, res) {
 	var db = req.db;
 	var payload=req.body;
 	// payload.userID=req.user;
     delete payload.createdOn;
-	payload.createdOn=Date.now();
-    console.log(payload.createdOn)
+    payload.createdOn=Date.now();
+    var regex = /[\. ,:––]+/gi;
+    payload.alias = payload.postTitle.toLowerCase().replace(regex, ' ').replace(/ +/g, '_');
+
 	if(req.user||payload.userID)
 	{
 		var collection = db.get('codePost');
