@@ -1,7 +1,7 @@
 (function () {
     var app=angular.module('codeApp-newbot',[]);
 
-	app.controller('newbotController', ['$http','$scope',function($http,$scope) {
+	app.controller('newUserController', ['$http','$scope',function($http,$scope) {
 		var mrtData=this
 		// create a message to display in our view
 		$scope.message = 'Login';

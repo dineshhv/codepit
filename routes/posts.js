@@ -3,6 +3,7 @@ var router = express.Router();
 var bcrypt = require('bcrypt');
 var session = require('express-session')
 var ObjectID = require('mongodb').ObjectID
+var post = require('../model/post');
 
 router.use(function(req, res, next) {
   if(req.session.user)
@@ -57,6 +58,21 @@ router.get('/:id', function(req, res) {
         }
         res.send(returnMsg);
     });
+});
+
+router.get('/view/:alias', function(req, res) {
+   // console.log(post.find({}))
+    post.find({ alias: req.params.alias }, function(err, post) {
+      if (err) throw err;
+      if(post&&post.length>0)
+        var returnMsg={"errorCode":0,"response":post}; 
+      else
+        var returnMsg={"errorCode":99,"msg":"no response"}; 
+      
+      // object of all the users
+      res.send(returnMsg)
+    });
+
 });
 
 router.get('/viewby/:postid', function(req, res) {

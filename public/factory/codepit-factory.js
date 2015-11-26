@@ -30,6 +30,13 @@ app.factory('DataService', function ($http) {
 	            });
 	            return promise;
 	        },
+	        getPostsbyAlias: function (postAlias) {
+	        	this.url='posts/view/'+postAlias;
+				var promise=$http.get(this.url).success(function (data) {
+					return data;
+	            });
+	            return promise;
+	        },
 	        getrelatedPost: function (tags,postID) {
 	        	this.url='posts/'+postID+'/related/'+tags;
 				var promise=$http.get(this.url).success(function (data) {

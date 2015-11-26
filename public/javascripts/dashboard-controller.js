@@ -3,7 +3,7 @@
 	var hash
     var app=angular.module('codeApp-bot',['codeapp-profile']);
 
-	app.controller('botController', [
+	app.controller('dashboardController', [
 		'$http',
 		'$scope',
 		'$location',
@@ -83,7 +83,7 @@
 		
 		$scope.showPost = function(){
 			$rootScope.$$childHead.from = 'user'
-			$location.path('view/'+this.items._id);
+			$location.path('view/'+this.items.alias);
 		}
 
 		 $scope.endless = new Endless($scope);

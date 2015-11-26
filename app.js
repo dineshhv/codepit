@@ -11,6 +11,9 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27018,localhost:27017,localhost:27019/codepit');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27018,localhost:27017,localhost:27019/codepit');
+var mongoosedb = mongoose.connection;
 
 
 var routes = require('./routes/index');
@@ -43,7 +46,7 @@ app.use(session({
 app.use(function(req,res,next){
     //req.db = db;
     req.db = db;
-    
+    // req.mongoosedb = mongoosedb;
     next();
 });
 
@@ -59,6 +62,7 @@ app.use('/posts', posts);
 app.use('/posts/addPost', posts);
 app.use('/posts/all', posts);
 app.use('/posts/id', posts);
+app.use('/posts/view/alias', posts);
 app.use('/posts/viewby/postid', posts);
 app.use('/posts/search/query', posts);
 app.use('/posts/postid/related/tags/', posts);

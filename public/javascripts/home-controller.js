@@ -1,7 +1,7 @@
 (function () {
     var app=angular.module('codeApp-home',[]);
 
-	app.controller('mainController', [
+	app.controller('homeController', [
 		'$http',
 		'$scope',
 		'$location',

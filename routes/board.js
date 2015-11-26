@@ -12,7 +12,7 @@ router.get('/info/:id', function(req, res) {
         }
         else
         {
-            var returnMsg={"errorCode":0,"msg":"no response"}; 
+            var returnMsg={"errorCode":99,"msg":"no response"}; 
         }
          res.send(returnMsg);
         

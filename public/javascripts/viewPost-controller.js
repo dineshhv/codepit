@@ -3,7 +3,7 @@
 	var hash;
     var app=angular.module('codeApp-botview',['codeapp-profile']);
     
-    app.controller('botviewController', 
+    app.controller('viewPostController', 
     	[
     	'$http',
     	'$scope', 
@@ -20,7 +20,7 @@
     	$rootScope.$$childHead.homescreen = false;
 		$rootScope.$$childHead.dashscreen = true;
 
-    	DataService.getPostsbyID($scope.postID).then(function (response) {
+    	DataService.getPostsbyAlias($scope.postID).then(function (response) {
     		if(response.data.errorCode==0)
 		    {
 		    	$scope.viewPost=response.data.response[0];
