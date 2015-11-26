@@ -14,35 +14,34 @@ router.use(function(req, res, next) {
   next();
 });
 
-router.get('/all', function(req, res) {
-    var db = req.db;
-    
-
-    var collection = db.get('codePost');
-    collection.find({ userID: req.user },'',function(e,docs){
-       if(docs&&docs.length>0)
-        {
-            var returnMsg={"errorCode":0,"response":docs}; 
+// router.get('/all/:userID', function(req, res) {
+//     post.find({ userID: req.params.id },function(e,docs){
+//        if(docs&&docs.length>0)
+//         {
+//             var returnMsg={"errorCode":0,"response":docs}; 
            
-        }
-        else
-        {
-            var returnMsg={"errorCode":99,"msg":"no response"}; 
-        }
-        res.send(returnMsg);
-    });
+//         }
+//         else
+//         {
+//             var returnMsg={"errorCode":99,"msg":"no response"}; 
+//         }
+//         res.send(returnMsg);
+//     });
 
     
-});
+// });
 
 router.get('/:id', function(req, res) {
-    var db = req.db;
-    var collection = db.get('codePost');
-    var options = {
-	    "limit": 10,
-	    "sort": {createdOn: -1}
-	}
-    collection.find({ userID: req.params.id },options,function(e,docs){
+ //    var db = req.db;
+ //    var collection = db.get('codePost');
+ //    var options = {
+	//     "limit": 10,
+	//     "sort": {createdOn: -1}
+	// }
+    post.find({ userID: req.params.id })
+    .sort({createdOn: -1})
+    .limit(10).
+    exec(function(e,docs){
     	if(docs&&docs.length>0)
         {
             var records={};
@@ -77,13 +76,12 @@ router.get('/view/:alias', function(req, res) {
 });
 
 router.get('/viewby/:postid', function(req, res) {
-    var db = req.db;
-    var collection = db.get('codePost');
-    var options = {
-        "limit": 10,
-        "sort": {createdOn: -1}
-    }
-    collection.find({ _id: req.params.postid },options,function(e,docs){
+    
+    post.find({ _id: req.params.postid })
+    .sort({createdOn: -1})
+    .limit(10)
+    .exec(function(e,docs){
+        console.log(docs)
         if(docs&&docs.length>0)
         {
             var returnMsg={"errorCode":0,"response":docs}; 
@@ -98,30 +96,27 @@ router.get('/viewby/:postid', function(req, res) {
 });
 
 router.get('/search/:query', function(req, res) {
-    var db = req.db;
-    var collection = db.get('codePost');
     var options = {
         "limit": 10,
         // "score" : { $meta: "textScore" },
         // "sort": { score: { $meta: "textScore" } }
     }
-    // collection.find({$or:[{postTitle:{ $regex:req.params.query}},{postContent:{$regex:req.params.query}},{tags:{$regex:req.params.query}}]},options,function(e,docs){
-    //     if(docs.length>0)
-    //     {
-    //         var returnMsg={"errorCode":0,"response":docs}; 
-           
-    //     }
-    //     else
-    //     {
-    //         var returnMsg={"errorCode":99,"msg":"no response"}; 
-    //     }
-    //     res.send(returnMsg);
-    // });
-     
-    collection.find({ $text: { $search: req.params.query }},options,function(e,docs){
-        if(docs&&docs.length>0)
+   
+    post.find(
+        { $text : { $search : req.params.query } }, 
+        { score : { $meta: "textScore" } }
+    )
+    .sort({ score : { $meta : 'textScore' } })
+    .exec(function(err, results) {
+        if (err) {
+                
+                msg="There was a problem adding the information to the database.";
+                var returnMsg={"errorCode":101,"msg":msg}
+                res.send(returnMsg);
+        }
+        if(results&&results.length>0)
         {
-            var returnMsg={"errorCode":0,"response":docs}; 
+            var returnMsg={"errorCode":0,"response":results}; 
            
         }
         else
@@ -130,6 +125,7 @@ router.get('/search/:query', function(req, res) {
         }
         res.send(returnMsg);
     });
+    
 });
 
 router.get('/:postid/related/:tags', function(req, res) {
@@ -216,6 +212,9 @@ router.post('/addPost', function(req, res) {
     payload.createdOn=Date.now();
     var regex = /[\. ,:––]+/gi;
     payload.alias = payload.postTitle.toLowerCase().replace(regex, ' ').replace(/ +/g, '_');
+
+    //payload.postContent = payload.postContent.replace(/"(.*?)"/gi, '');
+    //payload.postContent = payload.postContent.replace(/\bstyle=\b/gi, ''); 
     if(req.user||payload.userID){
         var newpost= post(payload);
         newpost.save(function(err, doc) {
