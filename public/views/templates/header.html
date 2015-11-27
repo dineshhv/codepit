@@ -1,90 +1,110 @@
 <nav class="top-bar" data-topbar role="navigation" data-options="is_hover:false" >
     <div class="container">
-      <div class="title-area">
-          <div class="name" ng-class="{hide: homescreen}">
-            <h1 ><a href="#/">codeRobo</a></h1>
+      <div class="row">
+        <div class="medium-3 columns">
+          <div class="title-area large-3 columns">
+              <div class="name" ng-class="{hide: homescreen}">
+                <h1 ><a href="#/">codeRobo</a></h1>
+              </div>
           </div>
+        </div>
+        <div class="medium-4 columns">
+        </div>
+        <div class="medium-5 columns">
+          <ul class="menu">
+            <li> <a ng-click="showLogin()"> Login </a></li>
+            <li> <span class="vr-border"></span> </li>
+            <li><a ng-click="showRegister()">Sign up</a></li>
+          </ul>
+        </div>
+        
       </div>
-      <section class="top-bar-section" ng-class="{hide: dashscreen}">
-        <ul class="right" ng-show="panelshow"   >
-          <li><a href="#/newbot"><i class="fa fa-user"></i> Register</a></li>
-          <li><a ng-click="showLogin()"><i class="fa fa-sign-in" ></i> login</a></li>
-          
-          <!-- 
-          <li><a href="#about"><i class="fa fa-shield"></i> about</a></li>
-          <li><a href="#contact"><i class="fa fa-comment"></i> contact</a></li> -->
-        </ul>
-        <div ng-show="loginShow" class="loginpanel" >
-            <div class="row">
-              <div class="large-12 columns">
-                <!-- <h6>Login</h6> -->
-                <form name="loginform"  ng-submit="loginform.$valid && userLogin(user)" novalidate>
-                    <div class="row">
-                      <div class="large-12 columns">
-                        <label>Username
-                          <input type="text" placeholder="" ng-model="user.username" required/>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="large-12 columns">
-                        <label>Password
-                          <input type="password" placeholder="" ng-model="user.password" required/>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="large-12 columns">
-                        <!-- <div class="button tiny expand">login</div> -->
-                        <button class="button tiny expand custom">login</button>
-                      </div>
-                    </div>
-                    <div class="row" style="display:none;">
-                      <div class="large-12 columns">
-                        Not a member? <a href="#newbot">Sign up now</a>
-                      </div>
-                    </div>
-                </form>
-              </div>
+       
 
-            </div>
-        </div>
-        <div ng-show="registerShow" class="registerpanel">
-            <div class="row">
-              <div class="large-12 columns">
-                <!-- <h6>Login</h6> -->
-                <form name="loginform"  ng-submit="loginform.$valid && userLogin(user)" novalidate>
-                    <div class="row">
-                      <div class="large-12 columns">
-                        <label>Username
-                          <input type="text" placeholder="" ng-model="user.username" required/>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="large-12 columns">
-                        <label>Password
-                          <input type="password" placeholder="" ng-model="user.password" required/>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="large-12 columns">
-                        <!-- <div class="button tiny expand">login</div> -->
-                        <button class="button tiny expand custom">login</button>
-                      </div>
-                    </div>
-                    <div class="row" style="display:none;">
-                      <div class="large-12 columns">
-                        Not a member? <a href="#newbot">Sign up now</a>
-                      </div>
-                    </div>
-                </form>
-              </div>
 
-            </div>
-        </div>
-      </section>
     </div>
     
   </nav>
+  <div class="loginPanel modal-opq fade" ng-class="{'in':loginShow}"> 
+  <!--ng-class="{'class1 class2 class3':!isNew, 'class1 class4': isNew }-->
+    <div class="medium-12 columns model">
+      <div class="medium-12 columns model-header">
+         <h5 class="dgFont">Login</h5>
+         <p class="fs-mini text-muted">Good to see you back...</p>
+      </div>
+      <div class="medium-12 columns model-content">
+          <form name="loginform"  ng-submit="loginform.$valid && userLogin(user)" novalidate>
+            <div class="medium-12 columns" style="padding:0px 5px; ">
+                <label>
+                  <input type="text" placeholder="Username" ng-model="user.username" required class="form-fields"/>
+                </label>
+            </div>
+            <div class="medium-12 columns"  style="padding:0px 5px; ">
+                <label>
+                  <input type="password" placeholder="Password" ng-model="user.password" required class="form-fields"/>
+                </label>
+            </div>
+            <div class="medium-12 columns"  style="padding:0px 5px; ">
+                <button class="button tiny expand cbtn rbackground">login</button>
+            </div>
+          </form>
+      </div>
+      <div class="medium-13 columns model-option">
+          <div class="large-12 columns">
+                        Not a member? <a ng-click="showRegister()">Sign up now</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="registerPanel modal-opq fade" ng-class="{'in':registerShow}"> 
+  <!--ng-class="{'class1 class2 class3':!isNew, 'class1 class4': isNew }-->
+    <div class="medium-12 columns model ">
+      <div class="medium-12 columns model-header">
+         <h5 class="dgFont">Sign up now!</h5>
+         <p class="fs-mini text-muted">Don't have an account? Register now! <br />And keep all your web findings safe....</p>
+      </div>
+      <div class="medium-12 columns model-content">
+           <form name="registerform"  ng-submit="registerform.$valid && addUser(user)" novalidate>
+            <div class="row">
+              <div class="large-12 columns">
+                <label>
+                  <input type="text" ng-model="user.username" placeholder="Username" class="form-fields" />
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <label>
+                  <input type="text" ng-model="user.password" placeholder="Password" class="form-fields" />
+                </label>
+              </div>
+            </div>
+             <div class="row">
+              <div class="large-12 columns">
+                <label>
+                  <input type="text" ng-model="user.repassword" placeholder="Retype Password" class="form-fields" />
+                </label>
+              </div>
+            </div>
+             <div class="row">
+              <div class="large-12 columns">
+                <label>
+                  <input type="email" ng-model="user.email" placeholder="E-mail" class="form-fields" />
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <button class="button tiny expand cbtn">Create</button>
+              </div>
+            </div>
+            
+        </form>
+      </div>
+      <div class="medium-13 columns model-option">
+          <div class="large-12 columns">
+                        
+          </div>
+      </div>
+    </div>
+  </div>

@@ -1,48 +1,53 @@
-<div class="jumbotron">
+<div class="large-12 columns nopadding" ng-include="'views/templates/header-dash.html'"></div>
+<div class="large-12 columns nopadding main" id="main" >
+  <div class="jumbotron">
 
-<div class="row">
+    <div class="row">
 
-  <div class="large-4 columns">&nbsp;</div>
-  <div class="large-4 columns">
-     <h1>Login</h1>
-      <form name="registerform"  ng-submit="registerform.$valid && addUser(user)" novalidate>
-        <div class="row">
-          <div class="large-12 columns">
-            <label>Username
-              <input type="text" ng-model="user.username" placeholder="" />
-            </label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <label>Password
-              <input type="text" ng-model="user.password" placeholder="" />
-            </label>
-          </div>
-        </div>
-         <div class="row">
-          <div class="large-12 columns">
-            <label>Password
-              <input type="text" ng-model="user.password" placeholder="" />
-            </label>
-          </div>
-        </div>
-         <div class="row">
-          <div class="large-12 columns">
-            <label>Email
-              <input type="email" ng-model="user.email" placeholder="" />
-            </label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <a href="#" class="button tiny expand">Create</a>
-          </div>
-        </div>
-        
-    </form>
+      <div class="large-4 columns">&nbsp;</div>
+      <div class="large-4 columns">
+         <h2>Sign up now!</h2>
+         <p class="fs-mini text-muted">Don't have an account? Register now! <br />And keep all your web findings safe....</p>
+          <form name="registerform"  ng-submit="registerform.$valid && addUser(user)" novalidate>
+            <div class="row">
+              <div class="large-12 columns">
+                <label>
+                  <input type="text" ng-model="user.username" placeholder="Username" class="form-control" />
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <label>
+                  <input type="text" ng-model="user.password" placeholder="Password" class="form-fields" />
+                </label>
+              </div>
+            </div>
+             <div class="row">
+              <div class="large-12 columns">
+                <label>
+                  <input type="text" ng-model="user.repassword" placeholder="Retype Password" class="form-fields" />
+                </label>
+              </div>
+            </div>
+             <div class="row">
+              <div class="large-12 columns">
+                <label>
+                  <input type="email" ng-model="user.email" placeholder="E-mail" class="form-fields" />
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <button class="button tiny expand cbtn">Create</button>
+              </div>
+            </div>
+            
+        </form>
+      </div>
+
+      <div class="large-4 columns">&nbsp;</div>
+    </div>
   </div>
-
-  <div class="large-4 columns">&nbsp;</div>
 </div>
-</div>
+<div class="large-12 columns nopadding"  ng-include="'views/templates/footer.html'"></div>

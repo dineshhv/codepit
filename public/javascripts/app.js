@@ -267,8 +267,9 @@
 		'$stateParams',function($http,$scope,$location,$cookies,$cookieStore,$state,$stateParams){
 	  	$scope.loginShow = false;
 	  	$scope.registerShow = false;
+	  	$scope.overlayShow = false;
 	  	$scope.panelshow = true;
-	  	this.user={}
+	  	$scope.user={}
 		this.products=[];
 		if($state.params.type == 'page')
 		{
@@ -276,8 +277,7 @@
 			$scope.dashscreen = false;
 		}
 		$scope.userLogin=function(user){
-			console.log(user)
-			$http.post('/users/login', {username:this.user.username,password:this.user.password}).
+			$http.post('/users/login', {username:$scope.user.username,password:$scope.user.password}).
 			then(function(response) {
 			    // this callback will be called asynchronously
 			    // when the response is available
@@ -286,19 +286,51 @@
 			    	$cookieStore.put('userSession', response.data.UHash);
 			    	$cookies.put('userSession', response.data.UHash);
 			    	$location.path('/bots')
-			    	$scope.loginShow = false;
+			    	
 			    	$scope.panelshow = false;
+			
 			    }
 			}, function(response) {
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			});
-			this.user={};
+			$scope.user={};
+		};
+		$scope.addUser=function(user){
+			
+			$http.post('/users/adduser', {username:$scope.user.username, password:$scope.user.password, email:$scope.user.email}).
+			then(function(response) {
+			    // this callback will be called asynchronously
+			    // when the response is available
+			    if(response.data.errorCode==0)
+			    {
+			    	$cookieStore.put('userSession', response.data.UHash);
+			    	$cookies.put('userSession', response.data.UHash);
+			    	$location.path('/bots')
+			    }
+			}, function(response) {
+			    // called asynchronously if an error occurs
+			    // or server returns response with an error status.
+			});
+			$scope.user={};
 		};
 	  	$scope.showLogin = function(){
-			$scope.loginShow = !$scope.loginShow;
+			$scope.loginShow = true;
+			$scope.overlayShow = true;
+			$scope.registerShow = false;
 			// console.log($scope.loginShow)
 		}
-	  
+		$scope.showRegister = function(){
+			$scope.registerShow = true;
+			$scope.overlayShow = true;
+			$scope.loginShow = false;
+			// console.log($scope.loginShow)
+		}
+	  	$scope.Overlayclick = function(){
+			$scope.loginShow = false;
+			$scope.registerShow = false;
+			$scope.overlayShow = false;
+			// console.log($scope.loginShow)
+		}
 	}])
 

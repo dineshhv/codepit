@@ -23,6 +23,9 @@
 		// $scope.progressbar = ngProgressFactory.createInstance();
   //       $scope.progressbar.start();
 
+		$rootScope.$$childHead.overlayShow = false;
+		$rootScope.$$childHead.loginShow = false;
+		$rootScope.$$childHead.registerShow = false;
 		
 		$rootScope.$$childHead.homescreen = false;
 		$rootScope.$$childHead.dashscreen = true;

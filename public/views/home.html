@@ -1,4 +1,4 @@
-<div class="large-12 columns nopadding" ng-include="'views/templates/header.html'"></div>
+<div class="large-12 columns nopadding header" ng-include="'views/templates/header.html'"></div>
 <div class="large-12 columns nopadding main" id="main" ng-class="{home: homescreen}" >
 <section role="main" class="scroll-container">
 <div class="row" style="min-height: 90%;">
@@ -9,11 +9,11 @@
     <h1>Coderobo</h1>
    
   </div>
-  <div class="large-8 large-centered columns" style="text-align:center;"> <p>A reference keeper! For storing all your issues and its solutions for later use... </p></div>
+  <div class="large-8 large-centered columns" style="text-align:center;"> <p>A reference keeper! <br />Simple storage solution to keep all web findings safe (e.g web articles, reference, links )</p></div>
   <div class="large-8 large-centered columns" style="margin-top:2%; 20%;top: 20%;"> <!-- position: absolute;left:  -->
       <div class="row">
         <div class="large-12 columns">
-          <input name="search" type="text"  key-enter="search()" ng-model="searchtext"  placeholder="Whats your query?"  style="background-color: transparent;"/>
+          <input name="search" type="text"  key-enter="search()" ng-model="searchtext"  placeholder="Whats your query?"  style="background-color: transparent;" class="form-fields"/>
         </div>
       </div>
 

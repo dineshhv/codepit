@@ -21,7 +21,7 @@
     <div class="large-12 medium-10 columns" >
       <div class="row" >
             <div class="small-5 columns">
-              <input type="text" placeholder="Filter" ng-model="courseFilter">
+              <input type="text" placeholder="Filter" ng-model="courseFilter" class="form-fields">
             </div>
             <div class="small-5 columns">
               <select ng-model="sortExpression" style="display:none">
@@ -57,7 +57,7 @@
           <div class="panel-layer">
             <div class="date-panel large-1 medium-1 columns">
               <div class="panel-createdOn text-center radius">
-                  <div class="panel-date radius-top">
+                  <div class="panel-date radius-top blFont">
                     {{items.createdOn | parseDate:'day'}}
                   </div>
                   <div class="panel-month">
@@ -72,8 +72,8 @@
               <div ng-click="showPost()" class="panel-title radius truncate" title="{{items.postTitle}}">{{items.postTitle}}</div>
                <div class="panel-tags radius truncate" title="{{items.tags}}">{{items.tags | joinBy:', '}}</div>
             
-              <div class="panel-content text-small block-ellipsis" ng-bind-html="items.shortDescp"></div>
-              <div class="panel-showmore"><a href=""> show more ...</a></div>
+              <div class="panel-content text-small block-ellipsis blFont" ng-bind-html="items.shortDescp"></div>
+              <div class="panel-showmore"><a href="" ng-click="showPost()" class="blFont"> show more ...</a></div>
             </div>
           </div>     
         </div>
@@ -98,23 +98,23 @@
           {{botsCtrl.newpost.tags}} -->
           <div class="large-9 medium-6 createArea">
               <div class="large-12 medium-6 columns" >
-                   <input type="text"  placeholder="Post Title" ng-model="newpost.postTitle" required/>
+                   <input type="text"  placeholder="Post Title" ng-model="newpost.postTitle" class="form-fields" required/>
               </div>
               <div class="large-12 medium-6 columns" >
-                   <input type="text" placeholder="Url" ng-model="newpost.postUrl" required/>
+                   <input type="text" placeholder="Url" ng-model="newpost.postUrl" class="form-fields" required/>
               </div>
               <div class="large-12 medium-6 columns" >
-                   <input type="text" placeholder="Post Short Desc" ng-model="newpost.shortDescp"/>
+                   <input type="text" placeholder="Post Short Desc" ng-model="newpost.shortDescp" class="form-fields"/>
               </div>
               <div class="large-12 medium-6 columns" >
                  <text-angular ng-model="newpost.postContent"></text-angular>
               </div>
               
               <div class="large-12 medium-6 columns" >
-                 <input type="text" placeholder="Tags" ng-model="newpost.tags" ng-list=", "/>
+                 <input type="text" placeholder="Tags" ng-model="newpost.tags" ng-list=", " class="form-fields"/>
               </div>
               <div class="large-12 medium-6 columns" >
-                  <button class="button tiny custom">post</button>
+                  <button class="button tiny custom cbtn dbbackground" style="margin-bottom:10px;">post</button>
               </div>
             </div>
           </div>
