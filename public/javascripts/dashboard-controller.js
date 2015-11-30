@@ -119,7 +119,12 @@
 
 		 	$scope.endless.addnewPost($scope.newpost).success(function(response){
 		 		if(response.errorCode == "0")
+		 		{
 		 			$scope.newpost._id = response.postID;
+		 			var script = /[\. ,:––]+/gi;
+   					$scope.alias = $scope.newpost.postTitle.toLowerCase().replace(script, ' ').replace(/ +/g, '_'); 
+		 			
+		 		}
 
 		 	})
 		 	$scope.newpost={}
