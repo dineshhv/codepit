@@ -3,69 +3,84 @@
           	<img data-ng-src="{{ myprofileImage }}" data-err-src="images/png/avatar.png" />
           </div>
           <div class="editOption" ng-click="showProfile()">
-          	<i class="icons ion-edit dgFont"></i>
+          	<i class="icons ion-edit" style="color:#fff"></i>
           </div>
           <div class="ProfileInfo large-9 columns">
             <p style="text-transform:capitalize;" class="blFont">{{itsMe.profileName}}</p>
           </div>
            <!-- url('images/profile.png') -->
-           {{itsMe.profileImage}}
+           <!-- {{itsMe.profileImage}} -->
       </div>
 
 <div class="profileUpload modal-opq fade" ng-class="{'in':profileUploadShow}"> 
 	<div ng-show="imageCropStep == 1" >	
-		<div class="medium-8 large-offset-2 columns">
-			<div class="medium-12 columns">
+		<div class="medium-10 large-offset-1 columns">
+			<div class="medium-12 columns model-header">
 				<h5 class="dgFont text-center">Profile Image Upload</h5>
-				<p class="dgFont">Select an image to crop...</p>
+				<p class="fs-mini text-muted" style="margin-bottom:5px;">Select an image to crop...</p>
 			</div>
-			<div class="medium-12 columns">
-				<div class="fileUpload button tiny expand cbtn">
+			<div class="medium-12 columns model-content">
+				<div class="fileUpload button tiny expand cbtn dbbackground">
 					<span>Upload</span>
 					<input type="file" class="upload" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
 				</div>
 			</div>
+			<div class="medium-12 columns model-option">
+	          <div class="large-12 columns">
+	               {{fname}}
+	          </div>
+      		</div>
 		</div>
 	</div>
 	<div ng-show="imageCropStep == 2">
-		   <image-crop			 
-			 data-height="100"
-			 data-width="100"
-			 data-shape="circle"
-			 data-step="imageCropStep"
-			 src="imgSrc"
-			 data-result="result"
-			 data-result-blob="resultBlob"
-			 crop="initCrop"
-			 padding="100"
-			 max-size="1024"
-		   ></image-crop>		   
-	</div>
-	<div ng-show="imageCropStep == 2">
-		<br />
-		<div class="row">
-		   <div class="medium-3 large-offset-3 columns">
-		   		<button class="button tiny expand cbtn" ng-click="clear()">Cancel</button>
+		
+		<div class="medium-10 large-offset-1 columns">
+			<div class="medium-12 columns model-header">
+				<h5 class="dgFont text-center">Crop Image</h5>
+				<!-- <p class="fs-mini text-muted" style="margin-bottom:5px;">Select an image to crop...</p> -->
+			</div>
+			<div class="medium-12 columns model-content">
+			   <image-crop			 
+				 data-height="100"
+				 data-width="100"
+				 data-shape="circle"
+				 data-step="imageCropStep"
+				 src="imgSrc"
+				 data-result="result"
+				 data-result-blob="resultBlob"
+				 crop="initCrop"
+				 padding="100"
+				 max-size="1024"
+			   ></image-crop>		   
 		   </div>
-		   <div class="medium-3 columns end">
-		   		<button class="button tiny expand cbtn" ng-click="initCrop = true">Crop</button>	
-		   </div>
-		</div>	
+			<br />
+			<div class="medium-12 columns model-option">
+				<div class="medium-6 columns">
+				  <button class="button tiny expand cbtn dbbackground" ng-click="clear()">Cancel</button>
+				</div>
+				<div class="medium-6 columns end">
+				  <button class="button tiny expand cbtn dbbackground" ng-click="initCrop = true">Crop</button>	
+				</div>
+				
+			</div>
+		</div>
 	</div>
 	<div ng-show="imageCropStep == 3">
 	   
 	     
-       	<div class="medium-8 large-offset-2 columns">
-			<div class="row">
-				<h2 class="text-center">Profile Image</h2>
-		 		<img ng-src="{{result}}" style="margin-left: 25px; margin-bottom: 20px;"></img> 
+       	<div class="medium-10 large-offset-1 columns">
+			<div class="medium-12 columns model-header">
+				<h5 class="dgFont text-center">Profile Image</h5>
+			</div>
+			<div class="medium-12 columns model-content">
+		 		<img ng-src="{{result}}" ></img> 
 		 	</div>
-		 	<div class="row">
+		 	<div class="medium-12 columns model-option">
 			   <div class="medium-6 columns">
-			   		<button class="button tiny expand cbtn" ng-click="clear()">cancel</button>	
+			   		<button class="button tiny expand cbtn dbbackground" ng-click="clear()">cancel</button>	
 			   </div>
 			   <div class="medium-6 columns">
-			   		<button class="button tiny expand cbtn" ng-click="saveprofile()">Save</button>	
+			   		<button class="button tiny expand cbtn dbbackground" ng-click="saveprofile()">Save</button>	
 			   </div>
 			</div>
 		</div>	      

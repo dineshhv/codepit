@@ -5,6 +5,7 @@ body{
   font-size   : 14px;
   line-height : 1.428571429;
   color       : #555;
+  overflow-x  : hidden;
   /*background-color: #f7f7f7;*/
 }
 
@@ -520,19 +521,19 @@ button:hover, button:focus, .button:hover, .button:focus {
     position: relative;
     background-color: transparent;
 }
-.loginPanel .model-header,.registerPanel .model-header{
+.loginPanel .model-header,.registerPanel .model-header,.profileUpload .model-header{
     text-align: center;
     padding: 15px;
     background-color: #eaf0f3;
     border-radius: 4px 4px 0 0;
 }
-.loginPanel .model-content,.registerPanel .model-content{
+.loginPanel .model-content,.registerPanel .model-content,.profileUpload .model-content{
     text-align: center;
     padding: 25px;
     background-color: #fff;
     
 }
-.loginPanel .model-option,.registerPanel .model-option{
+.loginPanel .model-option,.registerPanel .model-option,.profileUpload .model-option{
     text-align: center;
     padding: 25px;
     background-color: #1E4C62;
