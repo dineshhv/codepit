@@ -53,14 +53,16 @@
 					else
 						$scope.searchpost = []
 
-
+					$scope.$apply();
 				});
 			}
+
 		}
 		$scope.showPost = function()
 		{
+			console.log(this.item)
 			$rootScope.$$childHead.from = 'guest'
-			$location.path('view/'+this.item._id);
+			$location.path('view/'+this.item.alias);
 		}
 
 	}]); 

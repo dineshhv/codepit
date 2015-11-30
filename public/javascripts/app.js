@@ -340,5 +340,11 @@
 				$scope.$$childTail.profileUploadShow = false;
 			// console.log($scope.loginShow)
 		}
+
+		$scope.logout = function(){
+			$cookieStore.remove('userSession')
+			$cookies.remove('userSession');
+			$location.path('/');
+		}
 	}])
 

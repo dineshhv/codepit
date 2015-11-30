@@ -29,14 +29,14 @@
       <span style="font-size:11px;">no related posts</span>
    </div>
     <div class="row" ng-repeat='item in searchpost'>
-        <div class='title large-12 medium-12 columns' ng-click="showPost()" >
+        <div class='title large-12 medium-12 columns dgbFont' ng-click="showPost()" >
             {{item.postTitle}}
         </div>
-        <div class="url large-12 medium-12 columns">
-          <a ng-href='{{item.postUrl}}' target='_blank'>{{item.postUrl}}</a>
+        <div class="url large-12 medium-12 columns ">
+          <a ng-href='{{item.postUrl}}' target='_blank' class="blFont">{{item.postUrl}}</a>
         </div>
-        <div class='desc large-12 medium-12 columns'>
-            <p>{{item.shortDescp}}</p>
+        <div class='desc large-12 medium-12 columns '>
+            <p class="blFont">{{item.shortDescp}}</p>
         </div>
     </div>
   </div>

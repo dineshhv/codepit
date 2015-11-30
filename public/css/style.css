@@ -74,6 +74,9 @@ a:hover, a:focus {
 .dgFont      {
   color      : #1f703d;
 }
+.dgbFont     {
+  color      : #12a0a5;
+}
 .yFont       {
   color      : #FF8700; //#FFB724;
 }
@@ -144,6 +147,14 @@ textarea:focus, input:focus,button:focus{
   -moz-border-radius-topright: 3px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+}
+.dropProp{
+    background: #000;
+    width: 175px;
+    position: absolute;
+    right: 5px;
+    top: 45px;
+    z-index: 10;
 }
 .panel{
  
@@ -539,6 +550,13 @@ button:hover, button:focus, .button:hover, .button:focus {
     background-color: #1E4C62;
     border-radius:  0 0 4px 4px;
 }
+
+.model-header{
+    text-align: center;
+    padding: 15px;
+    background-color: #eaf0f3;
+    border-radius:  0 0 4px 4px;
+}
 .modal-opq, .overlay {
     bottom: 0;
     right: 0;
@@ -572,7 +590,7 @@ button:hover, button:focus, .button:hover, .button:focus {
   margin-bottom: 30px;
 }
 .logout {
-  padding-top: 10px;
+  padding-top: 15px;
 }
 .logout ul{
   float:right;
@@ -655,4 +673,9 @@ button:hover, button:focus, .button:hover, .button:focus {
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+.dropProp.model-header ul{
+      float: none;
+      margin-left: 0rem !important; 
+      color: #12a0a5;
 }

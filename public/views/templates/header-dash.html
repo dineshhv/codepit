@@ -8,11 +8,15 @@
 		          </div>
 		      </div>
 		    </div>
-		    <div class="medium-3 columns logout">
+		    <div class="medium-3 columns logout" ng-show="userHash != undefined">
 		    	<ul>
-		    		<li>Logout <span><i class="icons ion-arrow-down-b"></i></span></li>
+		    		<li class="fs-mini">Account <span><i class="icons ion-arrow-down-b" ng-click="showProps()"></i></span></li>
 		    	</ul>
-		    	
+		    	<div class="dropProp model-header" ng-class="{'hide':propsShow}">
+		    			<ul>
+		    				<li class="dgFont" ng-click="logout()">Logout</li>
+		    			</ul>
+		    	</div>
 		    </div>
 	    </div>
     </div>

@@ -29,6 +29,9 @@
 
 		$rootScope.$$childHead.homescreen = false;
 		$rootScope.$$childHead.dashscreen = true;
+
+		$scope.propsShow = true;
+
         $scope.itemsPerPage = 10
 	    $scope.totalItems = 47 // 5 pages
 	    $scope.currentPage = 3
@@ -90,6 +93,11 @@
 			$rootScope.$$childHead.from = 'user'
 			$location.path('view/'+this.items.alias);
 		}
+
+		$scope.showProps = function(){
+			$scope.propsShow = !$scope.propsShow
+		}
+
 
 		$scope.endless = new Endless($scope);
 		
