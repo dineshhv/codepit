@@ -39,6 +39,7 @@
 	    $scope.maxSizeZero = 0
 		$scope.imageCropStep = 2
 
+		// $scope.myprofileImage = 'data:image/gif;base64,';
 		$scope.blocktype = true;
 		$scope.listtype = false;
 		$scope.userHash	=	$cookies.get('userSession');
@@ -70,6 +71,8 @@
 		    if(response.data.errorCode==0)
 		    {
 				$scope.itsMe=response.data.response[0];
+				$scope.myprofileImage = $scope.itsMe.profileImage;
+				$scope.$apply();
 		    }
 			else
 			{
@@ -132,6 +135,16 @@
 				$scope.$apply();
 			};
 			
+		}
+
+		$scope.saveprofile = function(){
+			$scope.myprofileImage = $scope.result;
+			var payload = {}
+			payload.userID = $scope.userHash
+			payload.profileImage = $scope.myprofileImage;
+			DataService.setProfileImage(payload).then(function (response) {
+				console.log(response)
+			});
 		}
 
 		$scope.clear = function() {

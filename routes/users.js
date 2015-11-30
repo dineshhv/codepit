@@ -175,6 +175,7 @@ router.post('/adduser', function(req, res) {
                           favourites      : {},
                           rated           : {},
                           userID          : doc._id,
+                          profileImage    : "",
                         }
                         profile.createdOn = Date.now()
                         

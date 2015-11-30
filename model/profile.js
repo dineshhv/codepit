@@ -12,6 +12,7 @@ var profileSchema = new Schema({
 	  // _id: ObjectId,
 	  profileName: { type: String, required: true},
 	  postCount: { type: Number, required: true },
+	  profileImage : String,
 	  preferenceTopic: {},
 	  favourites: {},
 	  rated: {},

@@ -71,7 +71,7 @@ app.use('/posts/id/after/dt', posts);
 app.use('/posts/id/before/dt', posts);
 app.use('/board', board);
 app.use('/board/info', board);
-
+app.use('/board/profileImage/update', board);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

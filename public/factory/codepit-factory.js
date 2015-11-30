@@ -9,6 +9,13 @@ app.factory('DataService', function ($http) {
 	            });
 	            return promise;
 	        },
+	        setProfileImage : function(payload){
+	        	this.url='board/profileImage/update';
+				var promise=$http.post(this.url,payload).success(function (data) {
+					return data;
+	            });
+	            return promise;
+	        },
 	        getPosts: function (Hash) {
 	        	this.url='posts/'+Hash;
 				var promise=$http.get(this.url).success(function (data) {
