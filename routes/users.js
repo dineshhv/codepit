@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
 var session = require('express-session')
+var user = require('../model/user');
 var profile = require('../model/profile');
 
 router.use(function(req, res, next) {
@@ -90,22 +91,26 @@ router.get('/:id', function(req, res) {
 
 
 router.post('/login', function(req, res) {
-    // Set our internal DB variable
-    var db = req.db;
     
-    // Get our form values. These rely on the "name" attributes
-    var userName = req.param('username');
-    var password = req.param('password');
-    var collection = db.get('codeUser');
-    if(userName&&password)
+
+    var payload=req.body;
+
+    payload.password = new Buffer(payload.password, 'base64').toString('ascii');
+    if(payload.username&&payload.password)
     {
-        collection.find({ username: userName },{},function(e,docs){
-            var hash = docs[0]['password'];
-            bcrypt.compare(password, hash, function(err, response) {
-                // res == true
+        user.find({ username: payload.username }, function(err, user) {
+          if (err){
+                msg="No user info found, please register";
+                var returnMsg={"errorCode":101,"msg":msg}
+                res.send(returnMsg);
+            }
+            var hash = user[0]['password'];
+            console.log(payload.password)
+            bcrypt.compare(payload.password, hash, function(err, response) {
+                console.log(response)
                 if(response)
                 {
-                   req.session.user=docs[0]._id;
+                   req.session.user=user[0]._id;
                    req.session.save(function(err) {
                       // session saved
                     })
@@ -113,49 +118,40 @@ router.post('/login', function(req, res) {
                 }
                 else
                 {
-                    var returnMsg={"errorCode":0,"msg":"Login failed"};
+                    var returnMsg={"errorCode":99,"msg":"Login failed"};
                 }
                 
                 res.send(returnMsg);
             });
-
+         
         });
+        
 
     }
     else
     {
-        var returnMsg={"errorCode":100,"msg":"Failed"}
+        var returnMsg={"errorCode":100,"msg":"Failed"+buf}
         res.send(returnMsg);
     }
 })
 
 router.post('/adduser', function(req, res) {
 
-    // Set our internal DB variable
-    var db = req.db;
     
-    // Get our form values. These rely on the "name" attributes
-    var userName = req.param('username');
-    var password = req.param('password');
-    var email    = req.param('email');
-    // Set our collection
-    
-
-    var collection = db.get('codeUser');
-    if(userName&&password)
+    var payload = req.body;
+    payload.password = new Buffer(payload.password, 'base64').toString('ascii');
+    if(payload.username&&payload.password)
     {
 
 	    bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(password, salt, function(err, hash) {
-            // Store hash in your password DB.
-                collection.insert({
-                "username" : userName,
-                "email"    : email,
-                "password" : hash,
-                "salt"     : salt,
-                }, function (err, doc) {
+            bcrypt.hash(payload.password, salt, function(err, hash) {
+                payload.password = hash;
+                payload.salt = salt;
+                var newUser= user(payload);
+                
+
+                newUser.save(function(err, doc) {
                     if (err) {
-                        // If it failed, return error
                         if(err.code==11000)
                         {
                             msg="Username Already available";
@@ -168,21 +164,38 @@ router.post('/adduser', function(req, res) {
                         res.send(returnMsg);
                     }
                     else {
-                        collection.find({ username: userName },{"_id":1},function(e,docs){
-                            req.session.user=docs[0]._id
-                            var returnMsg={"errorCode":0,"msg":"Successfully Added","UHash":docs[0]._id}
-                            res.send(returnMsg);
-                        });
                         
-                        // If it worked, set the header so the address bar doesn't still say /adduser
-                       // res.location("userlist");
-                        // And forward to success page
-                        //res.redirect("userlist");
+                        var mydocID = doc._id;
+                        req.session.user=mydocID;
+
+                        var newProf = {
+                          profileName     : doc.username,
+                          postCount       : 0,
+                          preferenceTopic : {},
+                          favourites      : {},
+                          rated           : {},
+                          userID          : doc._id,
+                        }
+                        profile.createdOn = Date.now()
+                        
+                        var newProfile = profile(newProf);
+                        // res.send(newProfile);
+                        
+                        newProfile.save(function(err,doc) {
+                          if (err){
+                            var returnMsg={"errorCode":101,"msg":err}
+                            res.send(returnMsg);
+                          }
+                          var returnMsg={"errorCode":0,"msg":"Successfully Added","UHash":mydocID}
+                          res.send(returnMsg);
+                          
+                        });
+                       
                     }
                 });
             });
         });
-        // Submit to the DB
+    //     // Submit to the DB
 	    
 
     }

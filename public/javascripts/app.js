@@ -19,7 +19,9 @@
 		'ngNotify',
 		'ui.router',
 		'ui.foundation.pagination',
-		'infinite-scroll'
+		'infinite-scroll',
+		'ImageCropper',
+		'base64'
 		]); //,'angularVideoBg'
 
 	
@@ -264,12 +266,14 @@
 		'$cookies',
 		'$cookieStore',
 		'$state',
-		'$stateParams',function($http,$scope,$location,$cookies,$cookieStore,$state,$stateParams){
+		'$stateParams',
+		'$base64',function($http,$scope,$location,$cookies,$cookieStore,$state,$stateParams,$base64){
 	  	$scope.loginShow = false;
 	  	$scope.registerShow = false;
 	  	$scope.overlayShow = false;
 	  	$scope.panelshow = true;
-	  	$scope.user={}
+	  	this.user={}
+	  	this.newuser={}
 		this.products=[];
 		if($state.params.type == 'page')
 		{
@@ -277,7 +281,8 @@
 			$scope.dashscreen = false;
 		}
 		$scope.userLogin=function(user){
-			$http.post('/users/login', {username:$scope.user.username,password:$scope.user.password}).
+			this.user.password = $base64.encode(this.user.password); //{username:$scope.user.username,password:$scope.password}
+			$http.post('/users/login', this.user).
 			then(function(response) {
 			    // this callback will be called asynchronously
 			    // when the response is available
@@ -294,11 +299,12 @@
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			});
-			$scope.user={};
+			this.user={};
 		};
 		$scope.addUser=function(user){
-			
-			$http.post('/users/adduser', {username:$scope.user.username, password:$scope.user.password, email:$scope.user.email}).
+			//{username:$scope.newuser.username, password:$scope.newuser.password, email:$scope.newuser.email}
+			this.newuser.password = $base64.encode(this.newuser.password);
+			$http.post('/users/adduser', this.newuser).
 			then(function(response) {
 			    // this callback will be called asynchronously
 			    // when the response is available
@@ -312,7 +318,7 @@
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			});
-			$scope.user={};
+			this.newuser={};
 		};
 	  	$scope.showLogin = function(){
 			$scope.loginShow = true;
@@ -330,6 +336,8 @@
 			$scope.loginShow = false;
 			$scope.registerShow = false;
 			$scope.overlayShow = false;
+			if('profileUploadShow' in $scope.$$childTail)
+				$scope.$$childTail.profileUploadShow = false;
 			// console.log($scope.loginShow)
 		}
 	}])

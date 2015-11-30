@@ -22,11 +22,11 @@
 		// console.log(dateFormate.dateConvert(1422200798441))
 		// $scope.progressbar = ngProgressFactory.createInstance();
   //       $scope.progressbar.start();
-
+  		$scope.profileUploadShow = false;
 		$rootScope.$$childHead.overlayShow = false;
 		$rootScope.$$childHead.loginShow = false;
 		$rootScope.$$childHead.registerShow = false;
-		
+
 		$rootScope.$$childHead.homescreen = false;
 		$rootScope.$$childHead.dashscreen = true;
         $scope.itemsPerPage = 10
@@ -37,16 +37,19 @@
 	    $scope.maxSize = 5
 
 	    $scope.maxSizeZero = 0
-		
+		$scope.imageCropStep = 2
+
 		$scope.blocktype = true;
 		$scope.listtype = false;
 		$scope.userHash	=	$cookies.get('userSession');
 		hash = $scope.userHash
 		if(!$scope.userHash)
 		{
-			$location.path('/');
+			// $location.path('/');
 		}
-		
+		$scope.getImage = function(){
+			return $scope.imgSrc;
+		}
 		// ngNotify.set('Post Created Successfully');
 		$scope.changeOrder = function(type){
 			if(type==='block')
@@ -65,9 +68,13 @@
 		DataService.getProfile($scope.userHash).then(function (response) {
 			
 		    if(response.data.errorCode==0)
+		    {
 				$scope.itsMe=response.data.response[0];
+		    }
 			else
-				$location.path('/');
+			{
+				// $location.path('/');
+			}
 
 
 		});
@@ -112,6 +119,33 @@
 		 	
 		 	
 		 }
+
+		 $scope.fileChanged = function(e) {			
+		
+			var files = e.target.files;
+		
+     		var fileReader = new FileReader();
+			fileReader.readAsDataURL(files[0]);		
+			
+			fileReader.onload = function(e) {
+				$scope.imgSrc = this.result;
+				$scope.$apply();
+			};
+			
+		}
+
+		$scope.clear = function() {
+			 $scope.imageCropStep = 1;
+			 delete $scope.imgSrc;
+			 delete $scope.result;
+			 delete $scope.resultBlob;
+		};
+
+		$scope.showProfile = function(){
+		 	
+		 	$scope.profileUploadShow = !$scope.profileUploadShow;
+		 	$rootScope.$$childHead.overlayShow  = !$rootScope.$$childHead.overlayShow ;
+		}
 	}]);      
 
 

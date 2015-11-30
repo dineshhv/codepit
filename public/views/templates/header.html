@@ -27,6 +27,7 @@
   </nav>
   <div class="loginPanel modal-opq fade" ng-class="{'in':loginShow}"> 
   <!--ng-class="{'class1 class2 class3':!isNew, 'class1 class4': isNew }-->
+
     <div class="medium-12 columns model">
       <div class="medium-12 columns model-header">
          <h5 class="dgFont">Login</h5>
@@ -64,32 +65,32 @@
          <p class="fs-mini text-muted">Don't have an account? Register now! <br />And keep all your web findings safe....</p>
       </div>
       <div class="medium-12 columns model-content">
-           <form name="registerform"  ng-submit="registerform.$valid && addUser(user)" novalidate>
+           <form name="registerform"  ng-submit="registerform.$valid && addUser(newuser)" novalidate>
             <div class="row">
               <div class="large-12 columns">
                 <label>
-                  <input type="text" ng-model="user.username" placeholder="Username" class="form-fields" />
+                  <input type="text" ng-model="newuser.username" placeholder="Username" class="form-fields" />
                 </label>
               </div>
             </div>
             <div class="row">
               <div class="large-12 columns">
                 <label>
-                  <input type="text" ng-model="user.password" placeholder="Password" class="form-fields" />
+                  <input type="password" ng-model="newuser.password" placeholder="Password" class="form-fields" />
                 </label>
               </div>
             </div>
              <div class="row">
               <div class="large-12 columns">
                 <label>
-                  <input type="text" ng-model="user.repassword" placeholder="Retype Password" class="form-fields" />
+                  <input type="password" ng-model="newuser.repassword" placeholder="Retype Password" class="form-fields" />
                 </label>
               </div>
             </div>
              <div class="row">
               <div class="large-12 columns">
                 <label>
-                  <input type="email" ng-model="user.email" placeholder="E-mail" class="form-fields" />
+                  <input type="email" ng-model="newuser.email" placeholder="E-mail" class="form-fields" />
                 </label>
               </div>
             </div>

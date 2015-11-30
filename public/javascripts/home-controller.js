@@ -17,30 +17,31 @@
 		$scope.user={};
 		$scope.searchtext=''
 		$scope.hide = true;
+		// var AES = require("crypto-js/aes");
 		//http://localhost:3001/appInfo
 		if($stateParams.type == 'page')
 		{
 			$rootScope.$$childHead.homescreen = true;
 			$rootScope.$$childHead.dashscreen = false;
 		}
-		$scope.userLogin=function(user){
+		// $scope.userLogin=function(user){
 			
-			$http.post('/users/login', {username:$scope.user.username,password:$scope.user.password}).
-			then(function(response) {
-			    // this callback will be called asynchronously
-			    // when the response is available
-			    if(response.data.errorCode==0)
-			    {
-			    	$cookieStore.put('userSession', response.data.UHash);
-			    	$cookies.put('userSession', response.data.UHash);
-			    	$location.path('/bots')
-			    }
-			}, function(response) {
-			    // called asynchronously if an error occurs
-			    // or server returns response with an error status.
-			});
-			$scope.user={};
-		};
+		// 	$http.post('/users/login', {username:$scope.user.username,password:$scope.user.password}).
+		// 	then(function(response) {
+		// 	    // this callback will be called asynchronously
+		// 	    // when the response is available
+		// 	    if(response.data.errorCode==0)
+		// 	    {
+		// 	    	$cookieStore.put('userSession', response.data.UHash);
+		// 	    	$cookies.put('userSession', response.data.UHash);
+		// 	    	$location.path('/bots')
+		// 	    }
+		// 	}, function(response) {
+		// 	    // called asynchronously if an error occurs
+		// 	    // or server returns response with an error status.
+		// 	});
+		// 	$scope.user={};
+		// };
 
 		$scope.search = function(){
 			if($scope.searchtext)

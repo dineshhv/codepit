@@ -1,10 +1,78 @@
  <div class="infoArea" > 
-          <div class="profileCircle large-3 columns" style="background-image:">
+          <div class="profileCircle large-3 columns" >
+          	<img data-ng-src="{{ result }}" data-err-src="images/png/avatar.png" />
+          </div>
+          <div class="editOption" ng-click="showProfile()">
+          	<i class="icons ion-edit dgFont"></i>
           </div>
           <div class="ProfileInfo large-9 columns">
             <p style="text-transform:capitalize;" class="blFont">{{itsMe.profileName}}</p>
           </div>
            <!-- url('images/profile.png') -->
       </div>
+      {{profileUploadShow}}
+<div class="profileUpload modal-opq fade" ng-class="{'in':profileUploadShow}"> 
+	<div ng-show="imageCropStep == 1" >	
+		<div class="medium-8 large-offset-2 columns">
+			<div class="medium-12 columns">
+				<h5 class="dgFont text-center">Profile Image Upload</h5>
+				<p>Please select yourImage</p>
+			</div>
+			<div class="medium-12 columns">
+				<div class="fileUpload button tiny expand cbtn">
+					<span>Upload</span>
+					<input type="file" class="upload" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-show="imageCropStep == 2">
+		   <image-crop			 
+			 data-height="200"
+			 data-width="200"
+			 data-shape="circle"
+			 data-step="imageCropStep"
+			 src="imgSrc"
+			 data-result="result"
+			 data-result-blob="resultBlob"
+			 crop="initCrop"
+			 padding="100"
+			 max-size="1024"
+		   ></image-crop>		   
+	</div>
+	<div ng-show="imageCropStep == 2">
+		<br />
+		<div class="row">
+		   <div class="medium-3 large-offset-3 columns">
+		   		<button class="button tiny expand cbtn" ng-click="clear()">Cancel</button>
+		   </div>
+		   <div class="medium-3 columns end">
+		   		<button class="button tiny expand cbtn" ng-click="initCrop = true">Crop</button>	
+		   </div>
+		</div>	
+	</div>
+	<div ng-show="imageCropStep == 3">
+	   
+	     
+       	<div class="medium-8 large-offset-2 columns">
+			<div class="row">
+				<h2 class="text-center">Result</h2>
+		 		<img ng-src="{{result}}" style="margin-left: 25px; margin-bottom: 20px;"></img> 
+		 	</div>
+		 	<div class="row">
+			   <div class="medium-6 columns">
+			   		<button class="button tiny expand cbtn" ng-click="clear()">cancel</button>	
+			   </div>
+			   <div class="medium-6 columns">
+			   		<button class="button tiny expand cbtn" ng-click="Overlayclick()">close</button>	
+			   </div>
+			</div>
+		</div>	      
+         <!-- <textarea class="result-datauri">{{ result }}</textarea> -->
+		 
+       	 
+	</div>	
+</div>
+
 <div class="divider"></div>
 <div class="blFont">posts: {{itsMe.postCount}}</div>

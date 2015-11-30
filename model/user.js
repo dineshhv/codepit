@@ -10,15 +10,12 @@ mongoosedb.once("open", function callback(){
 
 var profileSchema = new Schema({
 	  // _id: ObjectId,
-	  profileName: { type: String, required: true},
-	  postCount: { type: Number, required: true },
-	  preferenceTopic: {},
-	  favourites: {},
-	  rated: {},
-	  userID: String,
-	  createdOn: Number
+	  username: { type: String, required: true, unique: true },
+	  email: { type: String, required: true, unique: true },
+	  password: String,
+	  salt: String
 	});
 
-var profile = mongoose.model("model-profile", profileSchema,"codeProfile");
+var User = mongoose.model("model-user", profileSchema,"codeUser");
 
-module.exports = profile;
+module.exports = User;

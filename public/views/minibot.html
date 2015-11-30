@@ -13,8 +13,8 @@
       </div>
       <div class="divider"></div>
       <div>posts: {{itsMe.postCount}}</div> -->
-<!--       <div>Language: {{itsMe.preferenceLanguage}}</div> -->
-<profile-panel></profile-panel>
+    <!--       <div>Language: {{itsMe.preferenceLanguage}}</div> -->
+    <profile-panel></profile-panel>
     </div>
   </div>
   <div class="large-9 medium-8 columns" >
@@ -40,6 +40,7 @@
 
     <div class="large-12 medium-10 columns" >
     <!-- {{changetype}} -->
+
     <div infinite-scroll='endless.nextPage(itsMe.userID)' infinite-scroll-disabled='endless.busy' infinite-scroll-distance='1'>
         <!-- <div ng-repeat='item in endless.items'>
           <span class='score'>{{item.score}}</span>
@@ -52,6 +53,12 @@
           <div style='clear: both;'></div>
         </div> myPosts
  -->
+        <div ng-show="endless.items.length==0" class="text-center radius nopost-panel">
+          <!-- ... -->
+            <div class="postless">
+              <h4 class="dgFont ">No post available...</h4>
+            </div>
+        </div>
         <div  ng-class="{block:blocktype,list:listtype}" class="panel radius" ng-repeat="items in endless.items | filter: courseFilter | orderBy: '-createdOn'" ng-class-odd="'odd'" ng-class-even="'even'">
 
           <div class="panel-layer">
@@ -86,7 +93,7 @@
      <div class="large-12 medium-6 columns " >
         <div class="large-9 medium-6 createArea">
           <div class="large-12 medium-6 columns" >
-          <h3>
+          <h3 class="dgFont">
           New Post
           </h3>
           </div>
